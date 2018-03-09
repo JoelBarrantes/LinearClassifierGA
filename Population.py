@@ -30,5 +30,15 @@ class Population:
             self.individuals_set.append(individual)
 
 
+    def get_average_accuracy(self):
+        avg_acc = 0
+        for item in self.individuals_set:
+            avg_acc += item.accuracy
+        return avg_acc/self.maxIndividuals
 
 
+    def get_average_loss(self):
+        avg_loss = 0
+        for item in self.individuals_set:
+            avg_loss += item.loss
+        return avg_loss/self.maxIndividuals

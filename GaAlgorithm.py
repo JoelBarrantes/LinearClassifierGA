@@ -4,6 +4,7 @@ from Population import Population
 from Fitness import calculate_fitness
 from Crossover import *
 from Mutation import *
+import scipy.io as sio
 import random
 
 
@@ -11,6 +12,7 @@ class GaAlgorithm:
 
     settings = None
     population = None
+    safebox = []
 
     def __init__(self, pSettings):
         self.settings = pSettings
@@ -43,19 +45,36 @@ class GaAlgorithm:
     def run(self):
         gen = self.settings.maxGenerations
         for i in range(0, gen):
-            print("Generation ", i+1)
+            print("Generation ", i)
             self.evaluate_population()
-            print("Generating new population...")
+            self.population.individuals_set.sort(key=lambda x: x.loss, reverse=False)
+            self.safebox.append((i,int(self.population.individuals_set[0].accuracy *1000 // 1 )
+                                 ,self.population.individuals_set[0]))
+
+            print("Metrics: ")
+            print("Average accuracy of the population: ", self.population.get_average_accuracy())
+            print("Average loss of the population: ", self.population.get_average_loss())
+
             self.population = self.new_population()
             print("---------------------------------------------------")
         self.evaluate_population()
+        self.population.individuals_set.sort(key=lambda x: x.loss, reverse=False)
+
+        self.safebox.append((gen,int(self.population.individuals_set[0].accuracy *1000 // 1 )
+                                 ,self.population.individuals_set[0]))
+        print("Metrics: ")
+        print("Average accuracy of the population: ", self.population.get_average_accuracy())
+        print("Average loss of the population: ", self.population.get_average_loss())
+        print("Best Individual Accuracy | Loss: ", self.population.individuals_set[0].accuracy,
+              self.population.individuals_set[0].loss)
+
+        self.save_safebox()
 
     def new_population(self):
         new_population = Population(self.settings.mu, self.settings.sigma,
                                      self.settings.size_x, self.settings.size_y,
                                      self.settings.maxIndividuals)
         #Sort by fitness
-        self.population.individuals_set.sort(key=lambda x: x.loss, reverse=True)
         elite = self.population.individuals_set[:self.settings.selection_threshold]
         new_population.individuals_set.extend(elite)
 
@@ -63,7 +82,7 @@ class GaAlgorithm:
         while i < self.settings.maxIndividuals:
             c = random.uniform(0,1)
 
-            if c <= 0.5:
+            if c <= self.settings.crossover_rate:
 
                 child_q = 2
                 if i == self.settings.maxIndividuals - 1:
@@ -122,3 +141,10 @@ class GaAlgorithm:
                 break
 
         return parent
+
+    def save_safebox(self):
+        for item in self.safebox:
+            mat = item[2].phenotype
+            id = hash(item[2].accuracy+item[2].loss)
+            folder = "results/"
+            sio.savemat(folder + str(item[0])+"_"+str(item[1])+"_"+str(id)+".mat", {'mat':mat})

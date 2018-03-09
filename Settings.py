@@ -8,6 +8,7 @@ class Settings:
     maxIndividuals = 0
     mutation_rate = 0
     selection_threshold = 0
+    crossover_rate = 0.5
 
     #Limit for the weight values
     mu = 0

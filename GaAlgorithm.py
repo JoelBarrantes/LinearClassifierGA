@@ -54,7 +54,8 @@ class GaAlgorithm:
             print("Metrics: ")
             print("Average accuracy of the population: ", self.population.get_average_accuracy())
             print("Average loss of the population: ", self.population.get_average_loss())
-
+            print("Best Individual Accuracy | Loss: ", self.population.individuals_set[0].accuracy,
+              self.population.individuals_set[0].loss)
             self.population = self.new_population()
             print("---------------------------------------------------")
         self.evaluate_population()

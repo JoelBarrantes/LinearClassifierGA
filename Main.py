@@ -15,7 +15,4 @@ def main():
     if __name__ == "__main__":
         ga_run.run()
 
-
-print(strftime("%Y-%m-%d %H:%M:%S", gmtime()))
 main()
-print(strftime("%Y-%m-%d %H:%M:%S", gmtime()))

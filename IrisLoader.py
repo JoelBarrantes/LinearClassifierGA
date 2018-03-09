@@ -14,5 +14,3 @@ def load_Iris():
         new_train_set.append(item)
 
     return (new_train_set, train_labels)
-
-load_Iris()

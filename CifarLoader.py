@@ -82,6 +82,7 @@ def train():
             image = np.reshape(image,(1024,1))
             new_training_set.append(image)
             new_labels.append(label)
+
     return (new_training_set, new_labels)
 train()
 

@@ -22,23 +22,23 @@ class GaAlgorithm:
     def evaluate_population(self):
         limit = self.settings.maxIndividuals
 
-        with Pool(4) as p:
-           results = p.starmap(calculate_fitness,[(x, self.settings.problem_type, self.population.individuals_set[x],
-                                  self.settings.training_set, self.settings.labels) for x in range(0,limit)])
-
-        results.sort(key=lambda tup: tup[0])
-
-        for i in range(0, limit):
-           item = results[i]
-           self.population.individuals_set[i].loss = item[1]
-           self.population.individuals_set[i].fitness = item[2]
+        # with Pool(4) as p:
+        #    results = p.starmap(calculate_fitness,[(x, self.settings.problem_type, self.population.individuals_set[x],
+        #                           self.settings.training_set, self.settings.labels) for x in range(0,limit)])
+        #
+        # results.sort(key=lambda tup: tup[0])
+        #
+        # for i in range(0, limit):
+        #    item = results[i]
+        #    self.population.individuals_set[i].loss = item[1]
+        #    self.population.individuals_set[i].accuracy = item[2]
 
         #Non parallel implementation
-        # for i in range(0,limit):
-        #     (i,loss, fitness) = calculate_fitness(i,self.settings.problem_type, self.population.individuals_set[i],
-        #                                 self.settings.training_set, self.settings.labels)
-        #     self.population.individuals_set[i].fitness = fitness
-        #     self.population.individuals_set[i].loss = loss
+        for i in range(0,limit):
+            (i,loss, acc) = calculate_fitness(i,self.settings.problem_type, self.population.individuals_set[i],
+                                        self.settings.training_set, self.settings.labels)
+            self.population.individuals_set[i].accuracy = acc
+            self.population.individuals_set[i].loss = loss
 
     def run(self):
         gen = self.settings.maxGenerations
@@ -55,7 +55,7 @@ class GaAlgorithm:
                                      self.settings.size_x, self.settings.size_y,
                                      self.settings.maxIndividuals)
         #Sort by fitness
-        self.population.individuals_set.sort(key=lambda x: x.fitness, reverse=True)
+        self.population.individuals_set.sort(key=lambda x: x.loss, reverse=True)
         elite = self.population.individuals_set[:self.settings.selection_threshold]
         new_population.individuals_set.extend(elite)
 
@@ -107,10 +107,10 @@ class GaAlgorithm:
         acc_probabilites = 0
         probabilities = []
         for individual in candidates:
-            acc_fitness += individual.fitness
+            acc_fitness += individual.accuracy
 
         for individual in candidates:
-            p_i = individual.fitness/acc_fitness
+            p_i = individual.accuracy/acc_fitness
             acc_probabilites += p_i
             probabilities.append(acc_probabilites)
 

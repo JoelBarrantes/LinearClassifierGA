@@ -20,8 +20,8 @@ def calculate_fitness(id,problem, individual, training_set, labels):
 
     L = L/N
     L = np.asscalar(L)
-    fitness = acc/N
+    accuracy = acc/N
 
-    print("Individual id: ",id, " | Fitness: ",fitness,
+    print("Individual id: ",id, " | Accuracy: ",accuracy,
           " | Hinge Loss: ", L)
     return(id, L, acc/N)

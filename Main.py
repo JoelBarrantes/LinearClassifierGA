@@ -3,8 +3,8 @@ from GaAlgorithm import GaAlgorithm
 from time import gmtime, strftime
 
 def main():
-    settings = Settings(1)
-    settings.maxIndividuals = 20
+    settings = Settings(2)
+    settings.maxIndividuals = 100
     settings.maxGenerations = 10
     settings.mu = 0
     settings.sigma = 1

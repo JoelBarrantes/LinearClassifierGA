@@ -38,7 +38,9 @@ class Settings:
             self.size_y = 1025
 
         if self.problem_type == 2:
-            self.training_set = load_Iris()
+            (self.training_set, self.labels) = load_Iris()
 
+            self.size_x = 3
+            self.size_y = 5
 
 

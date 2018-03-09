@@ -3,7 +3,7 @@ import numpy as np
 class Individual:
 
     phenotype = None
-    fitness = 0
+    accuracy = 0
     loss = 0
 
     def __init__(self, mu, sigma, x, y):

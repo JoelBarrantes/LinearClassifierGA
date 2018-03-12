@@ -122,7 +122,8 @@ class GaAlgorithm:
                 else:
                     break
 
-            (child_a, child_b) = cross(par_a, par_b, self.settings.crossover_function)
+            (child_a, child_b) = cross(par_a, par_b, self.settings.crossover_function,
+                                       self.settings.mu, self.settings.sigma)
             mutate(child_a, self.settings.mutation_rate, self.settings.mutation_function)
             mutate(child_b, self.settings.mutation_rate, self.settings.mutation_function)
             children.append(child_a)

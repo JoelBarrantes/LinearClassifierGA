@@ -97,6 +97,3 @@ def train():
     new_training_set.extend(trucks[:desired_size])
 
     return new_training_set, new_labels
-
-
-x, y = train()

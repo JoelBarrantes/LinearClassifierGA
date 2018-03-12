@@ -1,10 +1,8 @@
-
 from sklearn.datasets import load_iris
-import numpy as np
 
 
-def load_Iris():
-    new_train_set= []
+def load_iris():
+    new_train_set = []
     iris = load_iris()
     # Arreglos de numpy
     train_data = iris.data

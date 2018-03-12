@@ -2,30 +2,30 @@ import cv2
 import numpy as np
 
 
-
-def load_gray_Cifar():
+def load_gray_cifar():
     return train()
+
 
 def unpickle(file):
     import pickle
     with open(file, 'rb') as fo:
-        dict = pickle.load(fo, encoding='bytes')
-    return dict
+        batch = pickle.load(fo, encoding='bytes')
+    return batch
 
 
 def load_test_set():
-    #Test batch is loaded
+    # Test batch is loaded
     batch_t = unpickle("data/test_batch")[b'data']
     labels_t = unpickle("data/test_batch")[b'labels']
 
-    #Test_set loaded as a numpy array
+    # Test_set loaded as a numpy array
     test_set = np.array(batch_t)
 
-    return (test_set, labels_t)
+    return test_set, labels_t
 
 
 def load_training_set():
-    #Each of the five batches is loaded
+    # Each of the five batches is loaded
     batch_1 = unpickle("data/data_batch_1")[b'data']
     batch_2 = unpickle("data/data_batch_2")[b'data']
     batch_3 = unpickle("data/data_batch_3")[b'data']
@@ -38,52 +38,65 @@ def load_training_set():
     labels_4 = unpickle("data/data_batch_4")[b'labels']
     labels_5 = unpickle("data/data_batch_5")[b'labels']
 
-    #training_set loaded as a vertical stack of all the batches
+    # training_set loaded as a vertical stack of all the batches
     training_set = np.vstack((batch_1, batch_2, batch_3, batch_4, batch_5))
 
-    #labels loaded as a single list of length 50k
+    # labels loaded as a single list of length 50k
     labels = labels_1 + labels_2 + labels_3 + labels_4 + labels_5
 
-    return(training_set, labels)
+    return training_set, labels
 
 
 def train():
-    #Load the global variables with data("Train" the model)
-    (data,labels) = load_training_set()
+    # Load the global variables with data("Train" the model)
+    (data, labels) = load_training_set()
 
     new_labels = []
     new_training_set = []
 
-    for i in range(0,50000):
+    desired_size = 1250
+
+    birds = []
+    frogs = []
+    ships = []
+    trucks = []
+    new_labels = [0 for i in range(0, desired_size)]
+    new_labels.extend([1 for i in range(0, desired_size)])
+    new_labels.extend([2 for i in range(0, desired_size)])
+    new_labels.extend([3 for i in range(0, desired_size)])
+
+    for i in range(0, 50000):
         label = labels[i]
 
-        #Get only 4 classes for the test
+        # Get only 4 classes for the test
         if label == 6 or label == 2 or label == 8 or label == 9:
 
-            #label = 0 -> Bird
-            #label = 1 -> Frog
-            #label = 2 -> Ship
-            #label = 3 -> Truck
+            # label = 0 -> Bird
+            # label = 1 -> Frog
+            # label = 2 -> Ship
+            # label = 3 -> Truck
 
-            if label == 2:
-                label = 0
-            if label == 6:
-                label = 1
-            if label==8:
-                label = 2
-            if label==9:
-                label = 3
-
-            image = np.reshape(data[i, 0:3072], (3,32,32))
-            #image = np.matrix.transpose(image)
-            #image = np.rot90(image, k = 3)
+            image = np.reshape(data[i, 0:3072], (3, 32, 32))
             image = cv2.merge(image)
             image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-            image = np.reshape(image,(1024,1))
-            new_training_set.append(image)
-            new_labels.append(label)
+            image = np.reshape(image, (1024, 1))
+            h = image
 
-    return (new_training_set, new_labels)
-train()
+            if label == 2:
+                birds.append(h)
+            if label == 6:
+                frogs.append(h)
+            if label == 8:
+                ships.append(h)
+            if label == 9:
+                trucks.append(h)
+
+    new_training_set.extend(birds[:desired_size])
+    new_training_set.extend(frogs[:desired_size])
+    new_training_set.extend(ships[:desired_size])
+    new_training_set.extend(trucks[:desired_size])
+
+    return new_training_set, new_labels
 
 
+x, y = train()

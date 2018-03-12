@@ -1,10 +1,10 @@
-import numpy as np
 from LinearModel import *
 
-def calculate_fitness(id,problem, individual, training_set, labels):
-    #Accuracy
+
+def calculate_fitness(id, problem, individual, training_set, labels):
+    # Accuracy
     acc = 0
-    #Loss
+    # Loss
     L = 0
 
     N = len(training_set)
@@ -18,10 +18,10 @@ def calculate_fitness(id,problem, individual, training_set, labels):
         if label == labels[i]:
             acc += 1
 
-    L = L/N
+    L = L / N
     L = np.asscalar(L)
-    accuracy = acc/N
+    accuracy = acc / N
 
-    print("Individual id: ",id, " | Accuracy: ",accuracy,
+    print("Individual id: ", id, " | Accuracy: ", accuracy,
           " | Hinge Loss: ", L)
-    return(id, L, acc/N)
+    return id, L, (acc / N)

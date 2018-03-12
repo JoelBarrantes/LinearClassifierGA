@@ -1,13 +1,14 @@
-
 import numpy as np
-def linear_model(x,W):
 
-    #Append 1 to the sample
+
+def linear_model(x, W):
+    # Append 1 to the sample
     k = np.append(x, 1)
-    k = np.reshape(k,(k.size, 1))
+    k = np.reshape(k, (k.size, 1))
 
-    #Linear Function
+    # Linear Function
     return np.matmul(W, k)
+
 
 def calculate_loss(y_i, m, delta):
     loss = 0
@@ -17,4 +18,3 @@ def calculate_loss(y_i, m, delta):
         else:
             loss += max(0, m[i] - m[y_i] + delta)
     return loss
-

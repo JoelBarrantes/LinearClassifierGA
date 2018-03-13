@@ -1,5 +1,3 @@
-import random
-
 import scipy.io as sio
 
 from Crossover import *
@@ -25,7 +23,7 @@ class GaAlgorithm:
 
         # with Pool(4) as p:
         #    results = p.starmap(calculate_fitness,[(x, self.settings.problem_type, self.population.individuals_set[x],
-        #                           self.settings.training_set, self.settings.labels) for x in range(0,limit)])
+        #                           self.settings.training_set, self.settings.labels, self.settings.debug_info) for x in range(0,limit)])
         #
         # results.sort(key=lambda tup: tup[0])
         #
@@ -37,14 +35,16 @@ class GaAlgorithm:
         # Non parallel implementation
         for i in range(0, limit):
             (i, loss, acc) = calculate_fitness(i, self.settings.problem_type, self.population.individuals_set[i],
-                                               self.settings.training_set, self.settings.labels)
+                                               self.settings.training_set, self.settings.labels,
+                                               self.settings.debug_info)
             self.population.individuals_set[i].accuracy = acc
             self.population.individuals_set[i].loss = loss
 
     def run(self):
         gen = self.settings.maxGenerations
         for i in range(0, gen):
-            print("Generation ", i)
+            if not self.settings.debug_info:
+                print("Generation ", i)
             self.evaluate_population()
 
             self.population.individuals_set.sort(key=lambda x: x.accuracy, reverse=True)
@@ -53,14 +53,19 @@ class GaAlgorithm:
 
             self.safebox.append((i, int(self.population.individuals_set[0].accuracy * 1000 // 1)
                                  , self.population.individuals_set[0]))
+            if not self.settings.debug_info:
+                print("Metrics: ")
+                print("Average accuracy of the population: ", self.population.get_average_accuracy())
+                print("Average loss of the population: ", self.population.get_average_loss())
+                print("Best Individual Accuracy | Loss: ", self.population.individuals_set[0].accuracy,
+                      self.population.individuals_set[0].loss)
+                print("---------------------------------------------------")
+            else:
+                print(i, ",", self.population.get_average_accuracy(), ",", self.population.get_average_loss(),
+                      ",", self.population.individuals_set[0].accuracy, ",", self.population.individuals_set[0].loss)
 
-            print("Metrics: ")
-            print("Average accuracy of the population: ", self.population.get_average_accuracy())
-            print("Average loss of the population: ", self.population.get_average_loss())
-            print("Best Individual Accuracy | Loss: ", self.population.individuals_set[0].accuracy,
-                  self.population.individuals_set[0].loss)
             self.population = self.new_population()
-            print("---------------------------------------------------")
+
         self.evaluate_population()
 
         self.population.individuals_set.sort(key=lambda x: x.accuracy, reverse=True)
@@ -69,11 +74,16 @@ class GaAlgorithm:
 
         self.safebox.append((gen, int(self.population.individuals_set[0].accuracy * 1000 // 1)
                              , self.population.individuals_set[0]))
-        print("Metrics: ")
-        print("Average accuracy of the population: ", self.population.get_average_accuracy())
-        print("Average loss of the population: ", self.population.get_average_loss())
-        print("Best Individual Accuracy | Loss: ", self.population.individuals_set[0].accuracy,
-              self.population.individuals_set[0].loss)
+
+        if not self.settings.debug_info:
+            print("Metrics: ")
+            print("Average accuracy of the population: ", self.population.get_average_accuracy())
+            print("Average loss of the population: ", self.population.get_average_loss())
+            print("Best Individual Accuracy | Loss: ", self.population.individuals_set[0].accuracy,
+                  self.population.individuals_set[0].loss)
+        else:
+            print(i, ",", self.population.get_average_accuracy(), ",", self.population.get_average_loss(),
+                  ",", self.population.individuals_set[0].accuracy, ",", self.population.individuals_set[0].loss)
 
         self.save_safebox()
 

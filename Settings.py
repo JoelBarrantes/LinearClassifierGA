@@ -27,7 +27,7 @@ class Settings:
     training_set = None
     labels = None
     save_folder = ""
-
+    debug_info = False
     def __init__(self, pProblem_type):
         self.problem_type = pProblem_type
         self.load_dataset()

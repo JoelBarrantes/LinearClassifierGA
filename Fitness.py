@@ -1,7 +1,7 @@
 from LinearModel import *
 
 
-def calculate_fitness(id, problem, individual, training_set, labels):
+def calculate_fitness(id, problem, individual, training_set, labels, debug):
     # Accuracy
     acc = 0
     # Loss
@@ -21,7 +21,7 @@ def calculate_fitness(id, problem, individual, training_set, labels):
     L = L / N
     L = np.asscalar(L)
     accuracy = acc / N
-
-    print("Individual id: ", id, " | Accuracy: ", accuracy,
-          " | Hinge Loss: ", L)
+    if not debug:
+        print("Individual id: ", id, " | Accuracy: ", accuracy,
+              " | Hinge Loss: ", L)
     return id, L, (acc / N)

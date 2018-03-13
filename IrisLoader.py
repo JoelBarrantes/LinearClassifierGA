@@ -1,9 +1,9 @@
-from sklearn.datasets import load_iris
+from sklearn.datasets import load_iris as ld
 
 
 def load_iris():
     new_train_set = []
-    iris = load_iris()
+    iris = ld()
     # Arreglos de numpy
     train_data = iris.data
     train_labels = iris.target

@@ -1,0 +1,39 @@
+
+
+x25_5_a = graphs('cifar_25_5_a_r');
+x25_5_l = graphs('cifar_25_5_l_r');
+x25_15_a = graphs('cifar_25_15_a_r');
+x25_15_l = graphs('cifar_25_15_l_r');
+x50_5_a = graphs('cifar_50_5_a_r');
+x50_5_l = graphs('cifar_50_5_l_r');
+x50_15_a = graphs('cifar_50_15_a_r');
+x50_15_l = graphs('cifar_50_15_l_r');
+
+x_axis = x25_5_a(:,1);
+
+figure;
+plot(x_axis, x25_5_a(:,3),'DisplayName','25-5-a');
+hold on;
+plot(x_axis, x25_5_l(:,3),'DisplayName','25-5-l');
+hold on;
+plot(x_axis, x25_15_a(:,3),'DisplayName','25-5-a');
+hold on;
+plot(x_axis, x25_15_l(:,3),'DisplayName','25-5-l');
+hold on;
+
+legend('show')
+
+figure;
+plot(x_axis, x50_5_a(:,3),'DisplayName','50-5-a');
+hold on;
+plot(x_axis, x50_15_a(:,3),'DisplayName','50-5-a');
+hold on;
+plot(x_axis, x50_5_l(:,3),'DisplayName','50-5-l');
+hold on;
+
+plot(x_axis, x50_15_l(:,3),'DisplayName','50-5-l');
+hold on;
+
+legend('show')
+
+

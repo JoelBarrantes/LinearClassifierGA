@@ -11,29 +11,27 @@ x50_15_l = graphs('cifar_50_15_l_r',3, 10);
 
 x_axis = x25_5_a(:,1);
 
-
-
 figure;
-plot(x_axis, x50_5_a(:,5),'DisplayName','a(x)');
+plot(x_axis, x50_5_a(:,5),'DisplayName','Fitness $e(x)$');
 hold on;
-plot(x_axis, x50_5_l(:,5),'DisplayName','$l(x)$');
+plot(x_axis, x50_5_l(:,5),'DisplayName','Fitness $p(x)$');
 hold on;
 
 lgd = legend('show');
 set(lgd,'Interpreter','latex')
-title('Pérdida promedio de la función de fitness por generación')
+title('Pérdida promedio por generación del mejor individuo')
 xlabel('Generación')
 ylabel('Hinge Loss')
 
 figure;
-plot(x_axis, x50_5_a(:,4),'DisplayName','$a(x)$');
+plot(x_axis, x50_5_a(:,4),'DisplayName','Fitness $e(x)$');
 hold on;
-plot(x_axis, x50_5_l(:,4),'DisplayName','$l(x)$');
+plot(x_axis, x50_5_l(:,4),'DisplayName','Fitness $p(x)$');
 hold on;
 
 lgd = legend('show', 'Location','southeast');
 set(lgd,'Interpreter','latex')
-title('Exactitud promedio de la función de fitness por generación')
+title('Exactitud promedio por generación del mejor individuo')
 xlabel('Generación')
 ylabel('Exactitud')
 
@@ -53,26 +51,26 @@ legend('show')
 
 
 figure;
-plot(x_axis, x25_5_a(:,4),'DisplayName','$5\%$');
+plot(x_axis, x25_5_a(:,4),'DisplayName','Mut. $5\%$');
 hold on;
-plot(x_axis, x25_15_a(:,4),'DisplayName','$15\%$');
+plot(x_axis, x25_15_a(:,4),'DisplayName','Mut. $15\%$');
 hold on;
 
 lgd = legend('show', 'Location','southeast');
 set(lgd,'Interpreter','latex')
-title('Exactitud promedio de probabilidad de mutación por generación')
+title('Pérdida promedio por generación del mejor individuo')
 xlabel('Generación')
 ylabel('Exactitud')
 
 figure;
-plot(x_axis, x50_5_a(:,4),'DisplayName','$5\%$');
+plot(x_axis, x50_5_a(:,4),'DisplayName','Mut. $5\%$');
 hold on;
-plot(x_axis, x50_15_a(:,4),'DisplayName','$15\%$');
+plot(x_axis, x50_15_a(:,4),'DisplayName','Mut. $15\%$');
 hold on;
 
 lgd = legend('show', 'Location','southeast');
 set(lgd,'Interpreter','latex')
-title('Exactitud promedio de probabilidad de mutación por generación')
+title('Exactitud promedio por generación del mejor individuo')
 xlabel('Generación')
 ylabel('Exactitud')
 

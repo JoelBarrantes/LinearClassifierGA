@@ -21,7 +21,7 @@ plot(x_axis, x100(:,5),'DisplayName','100 individuos');
 hold on;
 
 legend('show');
-title('Pérdida promedio del mejor individuo por generación')
+title('Pérdida promedio por generación del mejor individuo' )
 xlabel('Generación')
 ylabel('Hinge Loss')
 
@@ -35,20 +35,20 @@ plot(x_axis, x100(:,4),'DisplayName','100 individuos');
 hold on;
 
 legend('show', 'Location','southeast');
-title('Exactitud promedio del mejor individuo por generación')
+title('Exactitud promedio por generación del mejor individuo ')
 xlabel('Generación')
 ylabel('Exactitud')
 
 %Loss promedio, crossover a vs b
 figure;
-plot(x_axis, x100(:,3),'DisplayName','$a(x,y)$');
+plot(x_axis, x100(:,5),'DisplayName','$a(x,y)$');
 hold on;
-plot(x_axis, x100_b(:,3),'DisplayName','$b(x,y)$');
+plot(x_axis, x100_b(:,5),'DisplayName','$b(x,y)$');
 hold on;
 
 lgd = legend('show');
 set(lgd,'Interpreter','latex')
-title('Pérdida Promedio del Crossover por Generación')
+title('Pérdida promedio por generación del mejor individuo')
 xlabel('Generación')
 ylabel('Hinge Loss')
 
@@ -61,7 +61,7 @@ plot(x_axis, x100_50(:,5),'DisplayName','100 individuos');
 hold on;
 
 legend('show');
-title('Pérdida promedio del mejor individuo por generación')
+title('Pérdida promedio por generación del mejor individuo ')
 xlabel('Generación')
 ylabel('Hinge Loss')
 
@@ -73,7 +73,7 @@ plot(x_axis, x100_50(:,4),'DisplayName','100 individuos');
 hold on;
 
 legend('show', 'Location','southeast');
-title('Exactitud promedio del mejor individuo por generación')
+title('Exactitud promedio por generación del mejor individuo ')
 xlabel('Generación')
 ylabel('Exactitud')
 

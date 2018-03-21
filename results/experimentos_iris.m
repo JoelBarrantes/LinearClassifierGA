@@ -3,11 +3,11 @@
 x25= graphs('iris_25_5_l_r',5, 10);
 x50 = graphs('iris_50_5_l_r',5, 10);
 x100= graphs('iris_100_5_l_r',5, 10);
-
+x100_b = graphs('iris_100_5_l_ree',5, 10);
 x25_50= graphs('iris_25_5_l_re',3, 50);
 x100_50= graphs('iris_100_5_l_re',3, 50);
 
-x100_b = graphs('iris_100_5_l_ree',5, 10);
+
 
 
 %Mejor loss promedio

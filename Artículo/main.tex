@@ -1,0 +1,493 @@
+% \documentclass[conference]{IEEEtran}
+% \usepackage[justification=centering]{caption}
+% %\captionsetup[table]{skip=10pt}
+% \usepackage{cite}
+% \usepackage{comment}
+% \ifCLASSINFOpdf
+%    \usepackage{graphicx}
+%   % declare the path(s) where your graphic files are
+% \graphicspath{{./images/}{.}}
+%   % and their extensions so you won't have to specify these with
+%   % every instance of \includegraphics
+%   % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+% \else
+%   % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+%   % will default to the driver specified in the system graphics.cfg if no
+%   % driver is specified.
+%   % \usepackage[dvips]{graphicx}
+%   % declare the path(s) where your graphic files are
+%   % \graphicspath{{../eps/}}
+%   % and their extensions so you won't have to specify these with
+%   % every instance of \includegraphics
+%   % \DeclareGraphicsExtensions{.eps}
+% \fi
+% \usepackage[utf8]{inputenc}                   % Para escribir tildes y eñes
+% \usepackage{amsmath}
+% \usepackage{amsfonts}     % y mejoran la escritura de fórmulas y símbolos matemáticos.
+% \usepackage{amssymb}
+% \usepackage{url}
+% % correct bad hyphenation here
+% \hyphenation{op-tical net-works semi-conduc-tor}
+% 
+% 
+% \usepackage{tabulary}
+% \usepackage{multirow}
+% \usepackage{multicol}
+ 
+\documentclass[conference]{IEEEtran}
+\usepackage[T1]{fontenc}                   % Para escribir tildes y eñes
+\usepackage[utf8]{inputenc}                   % Para escribir tildes y eñes
+\usepackage{amssymb}
+\usepackage[english]{babel}  
+\usepackage{esvect} % Para que los títulos de figuras, tablas y otros estén en español
+%\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}					% Cambiar nombre a tablas
+%\addto\captionsspanish{\renewcommand{\listtablename}{Índice de tablas}}		% Cambiar nombre a lista de tablas
+%\addto\captionsspanish{\renewcommand\IEEEkeywordsname{Palabras Clave}}
+% \usepackage{geometry}                         
+% \geometry{left=18mm,right=18mm,top=21mm,bottom=21mm} % Tamaño del área de escritura de la página
+% \usepackage{ucs}
+\usepackage{amsmath}      % Los paquetes ams son desarrollados por la American Mathematical Society
+\usepackage{multirow}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usepackage{amsfonts}     % y mejoran la escritura de fórmulas y símbolos matemáticos.
+\usepackage{amssymb}
+\usepackage{graphicx}     % Para insertar gráficas
+\usepackage{subcaption}   % Para insertar subgraphics
+%\usepackage{href} 		  % para insertar hipervinculos
+% \usepackage{rotating}
+% \usepackage{epstopdf}     % Permite el uso de eps
+% \usepackage[lofdepth,lotdepth]{subfig}	% Para colocar varias figuras
+% \usepackage{unitsdef}	  % Para la presentación correcta de unidades
+% \usepackage{pdfpages}   %incluir paginas de pdf externo, para los anexos
+%\usepackage{appendix}   %para los anexos
+% \renewcommand{\unitvaluesep}{\hspace*{4pt}}	% Redimensionamiento del espacio entre magnitud y unidad
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=black,citecolor=black]{hyperref}     % Para insertar hipervínculos y marcadores
+% \usepackage{float}		% Para ubicar las tablas y figuras justo después del texto
+% \usepackage{booktabs}	% Para hacer tablas más estilizadas
+%  \usepackage{multirow}
+% \batchmode
+%\usepackage{apacite}
+% \bibliographystyle{plain} 
+% \pagestyle{plain} 
+\pagenumbering{arabic}
+% \usepackage{lastpage}
+\usepackage{fancyhdr}	% Para manejar los encabezados y pies de página
+\pagestyle{fancy}		% Contenido de los encabezados y pies de pagina
+% \usepackage{hyperref}
+% \usepackage{cite}
+\usepackage{fixltx2e}
+% %tikz stuff
+\usepackage{tikz,pgf,pgffor}
+% \usepgfmodule{plot}
+% \usetikzlibrary{arrows,decorations,backgrounds,fit,calc,through,scopes,positioning,automata,chains,er,fadings,calendar,matrix,mindmap,folding,patterns,petri,plothandlers,plotmarks,shadows,shapes,shapes.arrows,topaths,trees}
+\usepackage{pgfplots,etex}  %required packages for precision
+
+
+\usepackage{xspace}
+\usepackage{color}
+\definecolor{prisred}{RGB}{180,0,0}
+\definecolor{prisgray}{RGB}{50,60,70}
+\definecolor{prisblue}{RGB}{40,65,140}
+\newcommand{\prislab}{{\fontfamily{bookman}\sc\textcolor{prisred}{PR}\textcolor{black}{IS\textcolor{prisgray}{-lab}}}\xspace}
+\newcommand{\pris}{Pattern Recognition and Machine Learning Group\xspace}
+\newcommand{\prisfull}{{\fontfamily{bookman}\sc\prislab}: \pris\xspace}
+\newcommand{\hl}[1]{\colourbox{yellow}{#1}}
+\definecolor{ace1}{RGB}{0,150,215}
+\definecolor{ace2}{RGB}{0,50,70}
+\newcommand{\ace}{{\fontfamily{bookman}\sc \textcolor{ace1}{A}\textcolor{ace2}{ce}}\xspace}
+\pgfplotsset{compat=newest} 
+\pgfplotsset{plot coordinates/math parser=false} 
+\newlength\figureheight 
+\newlength\figurewidth 
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Clasificación de los conjuntos Iris y CIFAR-10 usando un algoritmo evolutivo.}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Joel Barrantes}
+\IEEEauthorblockA{Escuela de Ingeniería en Computación\\
+Instituto Tecnológico de Costa Rica\\
+Cartago, Costa Rica 159-7050\\
+Email: isbarrantes@ic-itcr.ac.cr}
+\and
+\IEEEauthorblockN{Reggie Barker}
+\IEEEauthorblockA{Escuela de Ingeniería en Computación\\
+Instituto Tecnológico de Costa Rica\\
+Cartago, Costa Rica 159-7050\\
+Email: reggiesbg@gmail.com}}
+
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% for over three affiliations, or if they all won't fit within the width
+% of the page, use this alternative format:
+% 
+%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
+%Homer Simpson\IEEEauthorrefmark{2},
+%James Kirk\IEEEauthorrefmark{3}, 
+%Montgomery Scott\IEEEauthorrefmark{3} and
+%Eldon Tyrell\IEEEauthorrefmark{4}}
+%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
+%Georgia Institute of Technology,
+%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
+%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
+%Email: homer@thesimpsons.com}
+%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
+%Telephone: (800) 555--1212, Fax: (888) 555--1212}
+%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
+
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract
+\begin{abstract}
+	En este artículo se propone un algoritmo genético para abordar el problema de clasificación de los conjuntos Iris y CIFAR-10, usando el modelo lineal. Los experimentos se basaron en el cambio de los hipérparametros del algoritmo genético, con el fin de poder observar el comportamiento del entrenamiento y saber cuales presentan los mejores resultados. Para el conjunto de Iris, se logró obtener un 96\% de exactitud en la clasificación, mientras que en CIFAR-10, se logró obtener un 42\% de exactitud.
+\end{abstract}
+
+
+\section{Introducción}
+En los últimos años la inteligencia artificial y el \textit{machine learning} han cobrado gran fuerza e importancia, debido a la forma en la que resuelve  los problemas y la gran versatilidad que tiene para poder introducirse en los diferentes campos de investigación y disciplinas. Uno de los problemas más comunes en los que la inteligencia artificial juega un papel clave es la clasificación de muestras. 
+
+La clasificación consiste en asignarle categorías a muestras con características específicas, de manera que se pueda distinguir la muestra por medio de su clase. Estas muestras son clasificadas dentro de una categoría de acuerdo a las características que se tomen en cuenta de la muestra. Por ejemplo, en clasificación de imágenes, es muy común usar la información de color de la imagen. 
+En este artículo, se plantea el problema de clasificar los conjuntos de datos CIFAR-10 e Iris flower data set. Estos conjuntos son muy usados en machine learning por principiantes en el área, debido a que la cantidad de muestras no es muy grande y la dimensionalidad de las muestras es baja.  Para abordar este tipo de problemas, es común la implementación de una red neuronal, pero en nuestro caso, se tomará un enfoque más experimental. Se planteará un algoritmo genético para el entrenamiento de un modelo lineal de la forma $f(x,W) = Wx$, con el fin de obtener una predicción de las clases de cada conjunto de datos.
+\section{Trabajos relacionados}
+	En \cite{AppGen}, se desarrollo un sistema de aprendizaje reforzado para jugadores de ajedrez novatos, este ve las jugadas de los jugadores profesionales y los compara con los jugadores novatos para brindarles recomendaciones sobres las jugadas que realizaron durante la partida, les da una vista de las jugadas con una profundidad hasta de 8 capas, lo que les permite a los jugadores ir mejorando mediante al feedback que revisen del sistema. \\
+    
+    En \cite{Lamos-Sweeney}, se implementa una red neuronal, en la cual se hizo uso de un algoritmo para el entrenamiento de la red neuronal, la red va a hacer la identificación de imágenes, se inició con números escritos a mano en blanco y negro, de 16x16, y se fue ampliando a imágenes de caras, gatos y luego se hicieron pruebas con imágenes con datos faltantes. \\ 
+    
+    En \cite{Montana}, se entrena una red neuronal haciendo uso de algoritmos genéticos, los datos que se usaron fueron obtenido de un receptor acústico submarino, con el fin de identificara sonido y señales provenientes de submarinos, para las pruebas se usaron variedades de sonidos con ruido e interferencias provenientes del océano. 
+
+\section{Metodología}
+	
+    Para abordar el problema de clasificación del conjunto de datos \textit{Iris flower data set} y el conjunto de datos \textit{CIFAR-10}, se implementó un modelo lineal de la forma 
+ \begin{equation}
+ 	f(\vec{x_i},W) = W\vec{x_i} = \vec{m_i},
+ \end{equation}
+ donde $\vec{x_i}$ es una muestra de un conjunto de datos $X$, y $W$ representa una matriz de pesos que, al multiplicarla con el vector $\vec{x_i}$, se produce el vector $\vec{m_i}$ que  estima la clase de la muestra $\vec{x_i}$. 
+La solución a este problema vendría dada por la optimización de la matriz de pesos $W$. 
+
+\subsection{Características de los datos}
+ 	\subsubsection{Iris flower data set} 
+    
+   Consiste en un conjunto de 150 muestras que describen morfología de la planta Iris para tres distintas clases. Cada muestra consisten en un vector $\vec{x}$ de dimensionalidad $R^4$, donde cada dimensión del vector $\vec{x}$ contiene una característica que describe una clase particular $k_i, i= 1,2,3$. Las primeras dos entradas del vector $\vec{x}$ contienen información sobre el largo y ancho del sépalo, mientras que las dos últimas entradas contienen información sobre el largo y ancho del pétalo (todas las entradas en centímetros). 
+   De las 150 muestras, 50 pertenecen a la clase $k_1$(Iris Setosa), 50 a la clase $k_2$(Iris Versicolour) y 50 a la clase $k_3$ (Iris Virginica). En el conjunto de datos, la clase $k_i$ es linealmente separable de las otras dos clases. La clase $k_2$ y $k_3$ no son linealmente separables entre ellas.
+   
+   \subsubsection{CIFAR-10}
+   \label{sub:cifar}
+   CIFAR-10 cuenta con un total de 50000 muestras, divididas en 10 clases. Para cada clase $k_i$, existen un total de 5000 imágenes a colores de 32 píxeles de alto por 32 píxeles de ancho.
+   Como es usual, cada imagen es representada por una matriz de píxeles de tres canales(RGB), por lo que la dimensionalidad de cada canal de la matriz es de $R^{32 \times 32}$. Por esta razón, cada muestra de CIFAR-10 esta dada por el vector $\vec{v}$ de dimensionalidad $R^3072$. Las primeras 1024 entradas de $\vec{v}$ consisten en los píxeles del canal rojo, las siguientes 1024 entradas son los píxeles del canal verde y las últimas 1024 entradas son los píxeles del canal azul.   Asimismo, CIFAR-10 facilita un conjunto para pruebas con 10000 de imágenes a colores(1000 imágenes por clase). 
+   Las clases disponibles en el conjunto CIFAR-10 son: avión, automóvil, ave, gato, venado, perro, rana, caballo, embarcación y camión. Para efectos de esta tarea, se descartarán las siguientes clases: avión, automóvil, gato, venado, perro y caballo. Además, todas las muestras serán convertidas a escala de grises, para reducir la dimensionalidad de los datos.
+      
+\subsection{Optimización de los pesos $W$}
+    Para optimizar la matriz $W$, tanto como para clasificación del conjunto Iris y el conjunto CIFAR-10, se implementó un algoritmo genético. Un algoritmo genético emula la forma en la que los individuos se adaptan a un ambiente, mediante operadores de cruce, mutación y selección de individuos \cite{Melanie1998}, y permite optimizar problemas en los que sus propiedades matemáticas no son claras. Otro aspecto importante en los algoritmos genéticos es la definición de la función de fitness del algoritmo, que nos indica cuán apto es un individuo respecto a su ambiente. Una vez definidas las partes de un algoritmo genético, se crea un ciclo finito que sigue la siguiente forma: cálculo del fitness, selección, generación de una nueva población y mutación. Por medio de un criterio de convergencia o un límite de iteraciones, se finaliza el ciclo.
+    A continuación, se presenta la definición de las partes del algoritmo genético implementado:
+    \subsection{Configuración e hiperparámetros}
+    El algortimo genético implementado permite la configuración de diversos aspectos del algoritmo: tipo de problema a optimizar (Iris o CIFAR-10), cantidad máxima de individuos, cantidad máxima de generaciones, probabilidad de mutación, probabilidad de cruce, porcentaje de elitismo, función de fitness y operador de cruce . Además de los anteriormente mencionados, la inicialización de la población sigue una distribución normal, cuyos parámetros $mu$ y $sigma$ son personalizables.
+    \subsubsection{Individuo}
+    Los individuos del algoritmo genético son estructuras cuyo fenotipo consiste en una matriz de pesos $W \in R^{k \times N}$, donde $k$ son las clases del conjunto de datos $X$ a clasificar, y $N$ es la dimensión de las muestras $x_i \in X$. Nótese que debido a las características de los conjuntos Iris y CIFAR-10, N siempre será un número par. Para efectos de la experimentación, los individuos inicializados aleatoriamente siguen una distribución normal estándar. El fitness es calculado para una población 
+    \subsubsection{Función de Fitness}
+    La función de fitness consiste en aplicar el modelo lineal al conjunto de datos (en nuestro caso, Iris o CIFAR-10), tomando como entrada el fenotipo de un individuo $I$. La función de fitness puede retornar dos posibles salidas: la pérdida del modelo $p(x)$ (Loss) o la exactitud obtenida $e(x)$ (Accuracy) . El hiperparámetro asociado controla esta salida. 
+    Con respecto a la pérdida del modelo, se utilizo la función de perdida \textit{Hinge Loss}, definida por la siguiente fórmula:
+    \begin{equation}
+    	L_i = \sum_{j\neq y_i} max(0, s_j - s_{y_i} + \Delta),
+    \end{equation}
+    donde  $s_j  = f(x_i,W)$, es decir, la clasificación para la muestra $x_i$ dada por el modelo, $s_y$ es la etiqueta real de la muestra y $\Delta$ es un hipérparámetro de la función. $L_i$ se calcula para cada muestra $x_i$. Una vez se obtienen todos los cálculos, se promedia $L_i$ para obtener la pérdida $L$ del modelo lineal evaluado con $W$.
+   	\subsubsection{Selección}
+    Una nueva generación consiste en el cruce de individuos existentes basados en su fitness, individuos élite y,  en ocasiones, la generación de nuevos individuos generados aleatoriamente. En el caso de generación por cruce, dos individuos tiene que ser seleccionados para ejecutar el dicho cruce. Los padres son seleccionados por medio de selección por ruleta, en donde el fitness de todos los individuos es normalizado, y como resultado, se selecciona un individuo de acuerdo a la probabilidad dada por su fitness normalizado. 
+    
+ \subsubsection{Cruce}
+   	En caso de que suceda un cruce entre dos padres, dos nuevos individuos denominados hijos serán generados a partir de una combinación del fenotipo de los padres. La implementación ofrece dos operadores de cruce $a$ y $b$. El operador $a$ esta basado en la combinación a nivel de columnas de los padres. 
+    Sea $a(x,y)$ la primera función de cruce. Sean $x$ y $y$ dos padres, de la forma:
+    \begin{eqnarray}
+    x= \begin{bmatrix}
+x_{11} & x_{12} &\cdots   & x_{1N}\\ 
+x_{21} & x_{22} &\cdots   & x_{2N}\\ 
+ \vdots & \vdots  & \ddots  & \vdots \\ 
+ x_{k1} & x_{k2} &\cdots   & x_{kN}
+\end{bmatrix}\\
+	y = \begin{bmatrix}
+y_{11} & y_{12} &\cdots   & y_{1N}\\ 
+y_{21} & y_{22} &\cdots   & y_{2N}\\ 
+ \vdots & \vdots  & \ddots  & \vdots \\ 
+ y_{k1} & y_{k2} &\cdots   & y_{kN}
+\end{bmatrix}
+    \end{eqnarray}
+  El resultado de aplicar $a(x,y)$ da como resultado dos hijos $h_1$ y $h_2$, de la siguiente forma:
+  \begin{eqnarray}
+  h_1 = \begin{bmatrix}
+x_{11} & y_{12} &x_{13}& \cdots  & y_{1N}\\ 
+x_{21} & y_{22} &x_{23}& \cdots  & y_{2N}\\ 
+ \vdots & \vdots  & \vdots  & \ddots &\vdots\\ 
+x_{k1} & y_{k2} &x_{k3}& \cdots  & y_{kN}
+\end{bmatrix}
+\\
+h_2 = \begin{bmatrix}
+y_{11} & x_{12} &y_{13}& \cdots  & x_{1N}\\ 
+y_{21} & x_{22} &y_{23}& \cdots  & x_{2N}\\ 
+ \vdots & \vdots  & \vdots  & \ddots &\vdots\\ 
+y_{k1} & x_{k2} &y_{k3}& \cdots  & x_{kN}
+\end{bmatrix},
+  \end{eqnarray} con $N$ par. 
+  El operador de cruce $b$ es una combinación a nivel de filas.
+  Al igual que el operador $a$, aplicar $b(x,y)$ da como resultado dos hijos $h_1$ y $h_2$ de la forma: 
+   \begin{eqnarray}
+  h_1 = \begin{bmatrix}
+x_{11} & x_{12} & \cdots  & x_{1N}\\ 
+y_{21} & y_{22} &\cdots  & y_{2N}\\
+x_{31} & x_{32} & \cdots & x_{3N} \\
+ \vdots & \vdots  & \ddots &\vdots\\ 
+y_{k1} & y_{k2} & \cdots  & y_{kN}
+\end{bmatrix}
+\\
+h_2 = \begin{bmatrix}
+y_{11} & y_{12} & \cdots  & y_{1N}\\ 
+x_{21} & x_{22} &\cdots  & x_{2N}\\
+y_{31} & y_{32} & \cdots & y_{3N} \\
+ \vdots & \vdots  & \ddots &\vdots\\ 
+x_{k1} & x_{k2} & \cdots  & x_{kN}
+\end{bmatrix}, 
+  \end{eqnarray}
+con $k$ par.
+
+\subsubsection{Mutación}:
+ 	La mutación ocurre al generar una nueva población $P_i$. Para cada individuo $I$ en $P_i$, se genera un número aleatorio entre $0$ y $1$, siguiendo una distribución uniforme. Si este número es menor o igual que la probabilidad de mutación establecida en la configuración del algoritmo genético, el individuo sufre una mutación.
+    Cuando se da una mutación de un individuo $I$, el elemento $w_{ij}$ (elegido de manera aleatoria) del fenotipo de $I$ (la matriz $W$ asociada) es remplazado por un número aleatorio entre $0$ y $1$, siguiendo una distribución uniforme. 
+    
+\section{Experimentos}
+
+Para el análisis del algoritmo genético y su efectividad en la optimización de los pesos $W$, tanto como para clasificación del conjunto Iris y CIFAR-10, se ejecutó el algoritmo genético con distintas configuraciones. A continuación se presenta una tabla que describe los experimentos diseñados para la clasificación del conjunto Iris: 
+
+\begin{table}[h]
+\centering
+\caption{Experimentos para conjunto Iris}
+\label{tablaI}
+\begin{tabular}{cccccc}
+\multicolumn{1}{l}{Id} &\multicolumn{1}{l}{Fitness} & \multicolumn{1}{l}{Num. Gen.} & \multicolumn{1}{l}{Num. Ind.} & \multicolumn{1}{l}{\% de Mutación} & \multicolumn{1}{l}{Cruce} \\
+$E_1$&$p(x)$                        & 10                            & 25                            & 5                                  & Tipo a                    \\
+$E_2$&$p(x)$                        & 10                            & 50                            & 5                                  & Tipo a                    \\
+$E_3$&$p(x)$                        & 10                            & 100                           & 5                                  & Tipo a                    \\
+$E_4$&$p(x) $                       & 10                            & 100                           & 5                                  & Tipo b                    \\
+$E_5$&$p(x)$                        & 50                            & 25                            & 5                                  & Tipo a                    \\
+$E_6$&$p(x)$                        & 50                            & 100                           & 5                                  & Tipo a                   
+\end{tabular}
+\end{table}
+
+Todos los experimentos fueron corridos 5 veces, y sus soluciones promediadas.
+Nótese que en todos los experimentos de Iris se decidió usar la función de fitness $p(x)$ (pérdida del modelo), y una probabilidad de mutación del $5\%$, pues debido a la baja dimensionalidad de los datos, un porcentaje de mutación alto puede causar que características importantes se pierdan.
+
+Para CIFAR-10, los siguientes experimentos fueron propuestos:
+\begin{table}[h]
+\centering
+\caption{Experimentos para conjunto CIFAR-10}
+\label{tablaC}
+\begin{tabular}{lccccc}
+Id    & \multicolumn{1}{l}{Fitness} & \multicolumn{1}{l}{Num. Gen.} & \multicolumn{1}{l}{Num. Ind.} & \multicolumn{1}{l}{\% de Mutación} & \multicolumn{1}{l}{Cruce} \\
+$E_1$ & $p(x)$                      & 10                            & 50                            & 5                                  & Tipo a                    \\
+$E_2$ & $p(x)$                      & 10                            & 50                            & 15                                 & Tipo a                    \\
+$E_3$ & $e(x)$                      & 10                            & 50                            & 5                                  & Tipo a                    \\
+$E_4$ & $e(x)$                      & 10                            & 50                            & 15                                 & Tipo a                   
+\end{tabular}
+\end{table}
+
+Los experimentos de CIFAR-10 fueron corridos 3 veces cada uno, con el fin de obtener un promedio para el reporte de los resultados.
+Para clasificar el conjunto CIFAR-10, se estableció el máximo de generaciones en 10, para observar mejor el impacto que tienen la función de fitness y la probabilidad de mutación en las primeras generaciones. Además, se decidió fijar el tipo de cruce para evitar que los experimentos difieran mucho entre sí.
+
+\section{Resultados}
+Para el reporte de los resultados, se tomaron en cuenta únicamente los mejores individuos generados por el algoritmo genético. 
+\subsection{Iris flower data set}
+A continuación se presentan, de manera resumida, los resultados de los experimentos del conjunto
+\textit{Iris flower data set}:
+	\begin{table}[h]
+\centering
+\caption{Resultados de los experimentos de Iris}
+\label{tablaRI}
+\begin{tabular}{ccc}
+Id    & Exactitud & Pérdida \\
+$E_1$ & 69.20\%   & 0.6598  \\
+$E_2$ & 70.93\%   & 0.6530  \\
+$E_3$ & 79.47\%   & 0.5357  \\
+$E_4$ & 72.40\%   & 0.5993  \\
+$E_5$ & 70.67\%   & 0.7505  \\
+$E_6$ & 77.33\%   & 0.5735  
+\end{tabular}
+\end{table}
+
+Como se puede observar en los resultados, una mayor cantidad de individuos mejora la solución, lo cual es un comportamiento esperado en los algoritmos evolutivos, pues existe una mayor variabilidad en los datos. La mejor solución producida por los experimentos(sin promediar las soluciones) obtuvo una exactitud del 96\% y una pérdida $L = 0.2423265688428321$. La figura 1 contiene una comparativa entre las funciones de cruce:
+
+\begin{figure}[h]
+  \begin{centering}
+	\scalebox{0.7}{\input{iris/loss_10gen_cross.tex}}
+	\end{centering}
+    \caption{Pérdida por generación de las funciones de cruce, usando los experimentos $E_3$ y $E_4$}
+    \label{}
+\end{figure}
+
+En este caso, la función de cruce $a(x,y)$ (a nivel de columnas) ofrece mejores resultados en cuanto a minimización de la pérdida del modelo. Esta observación fue consistente a lo largo del proyecto, por lo que se decidió usar la función de cruce $a(x,y)$ en los demás experimentos (incluyendo CIFAR-10).
+
+Por otra parte, la figura 2 nos muestra la exactitud del modelo frente a la pérdida. En este caso se comparan los experimentos $E_1$, $E_2$, y $E_3$, pues los hiperparámetros son los mismos excepto por la cantidad de individuos.  
+
+\begin{figure}[h]
+\begin{centering}
+\begin{subfigure}{.25\textwidth}
+   \begin{centering}
+	\scalebox{0.35}{\input{iris/acc_10gen.tex}}
+	\end{centering}
+    \caption{}
+    \label{}\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \begin{centering}
+	\scalebox{0.35}{\input{iris/loss_10gen.tex}}
+	\end{centering}
+    \caption{}
+    \label{}
+\end{subfigure}
+\end{centering}
+\caption{Comparativa de $E_1$ (25 individuos), $E_2$ (50 individuos) y $E_3$ (100 individuos)\\(a) Exactitud promedio por generación (b) Pérdida promedio por generación}
+\label{figure:comparision_fitness}
+\end{figure}
+
+Podemos observar que a medida que la pérdida es minimizada, la exactitud del modelo aumenta. Este comportamiento es deseable cuando se desea minimizar la pérdida del modelo. Una vez más, se comprueba que una mayor cantidad de individuos produce mejores resultados.
+
+En la figura 3 se muestra lo que sucede cuando se aumenta la cantidad de generaciones del algoritmo genético.
+
+\begin{figure}[h]
+\begin{centering}
+\begin{subfigure}{.25\textwidth}
+   \begin{centering}
+	\scalebox{0.35}{\input{iris/acc_50gen.tex}}
+	\end{centering}
+    \caption{}
+    \label{}\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \begin{centering}
+	\scalebox{0.35}{\input{iris/loss_50gen.tex}}
+	\end{centering}
+    \caption{}
+    \label{}
+\end{subfigure}
+\end{centering}
+\caption{Comparativa de  de $E_5$ (25 individuos) y $E_6$ (100 individuos)\\(a) Exactitud promedio por generación (b) Pérdida promedio por generación}
+\label{figure:comparision_fitness}
+\end{figure}
+
+La figura 3 evidencia como el algoritmo genético llega a converger a mínimos locales independientemente de la cantidad de individuos.
+
+\subsection{CIFAR-10}
+Los resultados globales de los experimentos de CIFAR-10 se muestran en la tabla IV:
+
+\begin{table}[h]
+\centering
+\caption{Resultados de los experimentos de CIFAR-10}
+\label{my-label}
+\begin{tabular}{ccc}
+Id    & Exactitud & Pérdida \\
+$E_1$ & 29.76\%   & 2213.3  \\
+$E_2$ & 31.05\%   & 2284.7  \\
+$E_3$ & 36.17\%   & 4202.9  \\
+$E_4$ & 38.83\%   & 2995.9 
+\end{tabular}
+\end{table}
+
+La mejor solución sin promediar obtuvo una exactitud del 42.62\% y una pérdida $p = 4141.97$. 
+
+En la figura 4 se muestra el impacto de la probabilidad de mutación en la calidad de las soluciones generadas, usando la función de fitness $e(x)$.
+\begin{figure}[h]
+\begin{centering}
+\begin{subfigure}{.25\textwidth}
+   \begin{centering}
+	\scalebox{0.35}{\input{cifar/acc_15_5mut.tex}}
+	\end{centering}
+    \caption{}
+    \label{}\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \begin{centering}
+	\scalebox{0.35}{\input{cifar/loss_15_5mut.tex}}
+	\end{centering}
+    \caption{}
+    \label{}
+\end{subfigure}
+\end{centering}
+\caption{Comparativa de  de $E_3$ (5\% mut.) y $E_4$ (15\% mut.)\\(a) Exactitud promedio por generación (b) Pérdida promedio por generación}
+\label{figure:comparision_fitness}
+\end{figure}
+
+La figura 5 muestra el comportamiento de la pérdida y la exactitud al utilizar las distintas funciones de fitness, con una probablidad de mutación de 15\%.
+\begin{figure}[h]
+\begin{centering}
+\begin{subfigure}{.25\textwidth}
+   \begin{centering}
+	\scalebox{0.35}{\input{cifar/acc_fitness_15mut.tex}}
+	\end{centering}
+    \caption{}
+    \label{}\end{subfigure}%
+\begin{subfigure}{.25\textwidth}
+  \begin{centering}
+	\scalebox{0.35}{\input{cifar/loss_fitness_15mut.tex}}
+	\end{centering}
+    \caption{}
+    \label{}
+\end{subfigure}
+\end{centering}
+\caption{Comparativa de funciones de fitness, experimentos $E_2$ (pérdida del modelo) y $E_4$ (exactitud del modelo)\\(a) Exactitud promedio por generación (b) Pérdida promedio por generación}
+\label{}
+\end{figure}
+
+Como se puede observar en la figura, cuando se tiene como objetivo la minimización de la pérdida (usar la función de fitness basada en pérdida $p(x)$), el algoritmo no mejora las soluciones con cada generación, pues este tiende a estancarse en un mínimo local muy rápido. De la misma manera, la exactitud del mejor individuo no aumenta de manera considerable. Este comportamiento se observo únicamente en los experimentos de CIFAR-10. Por otra parte, si observamos el comportamiento de la función de fitness basada en exactitud($e(x)$), podemos notar como la pérdida tiende a disminuir a medida que la exactitud del mejor individuo va aumentando a un ritmo mucho más acelerado que el anterior.
+
+\subsection{Visualización de pesos para CIFAR-10}
+Como se mencionó anteriormente, la mejor matriz de pesos $W$ generada obtuvo aproximadamente un 42\% de exactitud.
+A continuación se muestra cada fila de $W$ interpretada como una imagen:
+
+
+\begin{figure}[h]
+
+
+\begin{center}
+\includegraphics[width=.2\textwidth]{w/bird}
+\includegraphics[width=.2\textwidth]{w/frog}
+\includegraphics[width=.2\textwidth]{w/ship}
+\includegraphics[width=.2\textwidth]{w/truck}
+\end{center}
+\caption{Arriba a la izquierda: clase ave. Arriba a la derecha: clase rana. Abajo a la derecha: clase embarcación. Abajo a la derecha: clase camión}
+
+\end{figure}
+
+\section{Conclusiones y trabajo a futuro}
+
+Teniendo en cuenta los resultados, se puede afirmar que la optimización de un modelo lineal mediante algoritmos genéticos es viable, siempre y cuando los datos a clasificar sean de baja dimensionalidad y el problema sea linealmente separable. No obstante, no es sensato esperar buenos resultados de un algoritmo evolutivo en problemas de clasificación, en cuyo caso, el uso de una red neuronal provee mejores resultados. 
+
+Por otro lado, se puede observar como el algoritmo genético logró, de manera consistente, generar muy buenas soluciones para el conjunto de datos de Iris, llegando al 96\% de exactitud en los experimentos llevados a cabo. 
+
+En cuanto al set de datos CIFAR-10, si bien no se obtuvo una matriz de pesos relativamente buena, se logró obtener una exactitud del 42\%, tomando en cuenta que los operadores de cruce no son sofisticados. Además, gran parte de la información del conjunto de datos CIFAR-10 viene dada por el color de las imágenes, que como se mencionó en la sección \ref{sub:cifar}
+
+Por esta razón, se espera formular un mejor operador de cruce, de manera que los hijos producidos por el cruce hereden las características que más influyen en el modelo lineal.
+
+\bibliography{mybib}{}
+\bibliographystyle{plain}
+
+\end{document}

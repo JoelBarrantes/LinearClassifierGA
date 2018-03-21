@@ -1,0 +1,61 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmin=0,
+xmax=10,
+xlabel style={font=\color{white!15!black}},
+xlabel={Generación},
+ymin=2000,
+ymax=7000,
+ylabel style={font=\color{white!15!black}},
+ylabel={Hinge Loss},
+axis background/.style={fill=white},
+legend style={legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [color=mycolor1]
+  table[row sep=crcr]{%
+0	5948.6448868393\\
+1	5804.51277839612\\
+2	6554.96761700072\\
+3	5835.43365201184\\
+4	5452.95805022483\\
+5	5850.87803582837\\
+6	5216.46949189338\\
+7	5392.27959981398\\
+8	5652.92547505497\\
+9	6312.90450565928\\
+10	4202.91808955887\\
+};
+\addlegendentry{Fitness $e(x)$}
+
+\addplot [color=mycolor2]
+  table[row sep=crcr]{%
+0	2562.45699124836\\
+1	2562.45699124836\\
+2	2345.36972716154\\
+3	2316.56812036901\\
+4	2246.28784321148\\
+5	2246.28784321148\\
+6	2221.97763495579\\
+7	2221.97763495579\\
+8	2221.97763495579\\
+9	2213.30283815889\\
+10	2213.30283815889\\
+};
+\addlegendentry{Fitness $p(x)$}
+
+\end{axis}
+\end{tikzpicture}%

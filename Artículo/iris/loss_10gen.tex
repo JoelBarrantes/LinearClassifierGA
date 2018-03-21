@@ -1,0 +1,78 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmin=0,
+xmax=10,
+xlabel style={font=\color{white!15!black}},
+xlabel={Generación},
+ymin=0.4,
+ymax=2.4,
+ylabel style={font=\color{white!15!black}},
+ylabel={Hinge Loss},
+axis background/.style={fill=white},
+legend style={legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [color=mycolor1]
+  table[row sep=crcr]{%
+0	1.71612760240518\\
+1	1.44143271745419\\
+2	1.20852329477606\\
+3	0.830422336054261\\
+4	0.830422336054261\\
+5	0.728100606025304\\
+6	0.728100606025304\\
+7	0.675327557351571\\
+8	0.675327557351571\\
+9	0.659950832974359\\
+10	0.659764899390904\\
+};
+\addlegendentry{25 individuos}
+
+\addplot [color=mycolor2]
+  table[row sep=crcr]{%
+0	2.38897419754974\\
+1	1.70272787364794\\
+2	1.10524766631724\\
+3	1.27820973230912\\
+4	1.12236431128614\\
+5	0.839633863923678\\
+6	0.824207834170145\\
+7	0.808743460761355\\
+8	0.698771489425637\\
+9	0.653163986401825\\
+10	0.652972765615301\\
+};
+\addlegendentry{50 individuos}
+
+\addplot [color=mycolor3]
+  table[row sep=crcr]{%
+0	1.17409313845364\\
+1	0.912050539601177\\
+2	0.841498713056203\\
+3	0.841498713056203\\
+4	0.676938211308601\\
+5	0.5766704783328\\
+6	0.5766704783328\\
+7	0.594847747445821\\
+8	0.583930934142344\\
+9	0.575936916446656\\
+10	0.535696940030965\\
+};
+\addlegendentry{100 individuos}
+
+\end{axis}
+\end{tikzpicture}%

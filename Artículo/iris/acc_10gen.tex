@@ -1,0 +1,78 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmin=0,
+xmax=10,
+xlabel style={font=\color{white!15!black}},
+xlabel={Generación},
+ymin=0.35,
+ymax=0.8,
+ylabel style={font=\color{white!15!black}},
+ylabel={Exactitud},
+axis background/.style={fill=white},
+legend style={at={(0.97,0.03)}, anchor=south east, legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [color=mycolor1]
+  table[row sep=crcr]{%
+0	0.482666666666667\\
+1	0.541333333333333\\
+2	0.525333333333333\\
+3	0.630666666666667\\
+4	0.630666666666667\\
+5	0.678666666666667\\
+6	0.678666666666667\\
+7	0.688\\
+8	0.688\\
+9	0.692\\
+10	0.692\\
+};
+\addlegendentry{25 individuos}
+
+\addplot [color=mycolor2]
+  table[row sep=crcr]{%
+0	0.522666666666667\\
+1	0.396\\
+2	0.598666666666667\\
+3	0.549333333333333\\
+4	0.632\\
+5	0.693333333333333\\
+6	0.718666666666667\\
+7	0.718666666666667\\
+8	0.724\\
+9	0.709333333333333\\
+10	0.709333333333333\\
+};
+\addlegendentry{50 individuos}
+
+\addplot [color=mycolor3]
+  table[row sep=crcr]{%
+0	0.618666666666667\\
+1	0.688\\
+2	0.696\\
+3	0.696\\
+4	0.722666666666667\\
+5	0.766666666666667\\
+6	0.766666666666667\\
+7	0.748\\
+8	0.752\\
+9	0.749333333333333\\
+10	0.794666666666667\\
+};
+\addlegendentry{100 individuos}
+
+\end{axis}
+\end{tikzpicture}%

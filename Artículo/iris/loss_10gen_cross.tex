@@ -1,0 +1,61 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmin=0,
+xmax=10,
+xlabel style={font=\color{white!15!black}},
+xlabel={Generación},
+ymin=0.4,
+ymax=2.4,
+ylabel style={font=\color{white!15!black}},
+ylabel={Hinge Loss},
+axis background/.style={fill=white},
+legend style={legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [color=mycolor1]
+  table[row sep=crcr]{%
+0	1.17409313845364\\
+1	0.912050539601177\\
+2	0.841498713056203\\
+3	0.841498713056203\\
+4	0.676938211308601\\
+5	0.5766704783328\\
+6	0.5766704783328\\
+7	0.594847747445821\\
+8	0.583930934142344\\
+9	0.575936916446656\\
+10	0.535696940030965\\
+};
+\addlegendentry{$a(x,y)$}
+
+\addplot [color=mycolor2]
+  table[row sep=crcr]{%
+0	2.22392091923746\\
+1	1.30438655820025\\
+2	0.911887098883746\\
+3	0.942459394583991\\
+4	0.93501068556165\\
+5	0.863106771654377\\
+6	0.838474754346038\\
+7	0.845515905154085\\
+8	0.731494420715198\\
+9	0.696624860479079\\
+10	0.599295649725895\\
+};
+\addlegendentry{$b(x,y)$}
+
+\end{axis}
+\end{tikzpicture}%
